@@ -222,7 +222,7 @@ x_lo, x_hi = d_*[-10], d_*[10]
 
 Ideally these samples are generated using a low-discrepancy sampling scheme. 
 
-We'll use `10 000` samples for this example. 
+We'll use `100 000` samples for this example. 
 
 
 ```python
@@ -233,13 +233,9 @@ uy.shape # prints (100000,3)
 
 
 
-    (10000, 2)
-
-
-
 ### Step 3: Evaluate the model on the coverage samples
 
-This step is the most computationally expensive, and should be done offline and in parallel. 
+This step is the most computationally expensive, and should be done offline and if possible and needed in parallel. 
 
 Luckily this evaluation depends only on the bounds (previous step) and need not be repeated if the bounds don't change or the model doesn't change. 
 
@@ -248,11 +244,6 @@ Luckily this evaluation depends only on the bounds (previous step) and need not 
 uy = f(ux)
 uy.shape # prints (100000,2)
 ```
-
-
-
-
-    (100000, 2)
 
 
 
@@ -283,8 +274,6 @@ fy,p = peeling_to_structure(a,b,kind='scenario',beta=0.01)
 fy.shape  # prints: (26,2,2)
 
 ```
-    (26, 2, 2)
-
 
 
 ### Step 6: Obtain marginal structures (fuzzy numbers) by projecting the coverage samples
@@ -300,11 +289,6 @@ fx = samples_to_fuzzy_projection(ux,a,c)
 
 fx.shape # prints: (26,3,2)
 ```
-
-
-
-
-    (26, 3, 2)
 
 
 
