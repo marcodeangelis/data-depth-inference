@@ -83,7 +83,7 @@ from algorithm.examples import (pickle_load,pickle_dump,banana_data,banana_model
 
 The forward inference problem consists in targeting $p_{X}$, and characterising the inferential uncertainty of the quantity $X$ that is being observed.
 
-# Generating synthetic data
+## Generating synthetic data
 
 Let us generate `n=100` iid samples from some data generating mechanism. We'll then need to forget about the mechanism, as in reality we are not supposed to know what $P_{X}$ looks like. 
 
@@ -107,7 +107,7 @@ plot_scattermatrix(X,bins=20,figsize=(10,10))
     
 
 
-# Run the inference algorithm
+## Run the inference algorithm
 
 We can now apply the data-peeling procedure to output the *depth* of the data set.
 
@@ -168,7 +168,7 @@ In other words, we target $P_{Y}$, while learning $P(X)$, with $Y=f(X)$.
 
 We'll call $f$ a model, for example an engineering model.
 
-# Generating synthetic data
+## Generating synthetic data
 
 Again we'll generate `n=100` iid samples from some data generating mechanism $P_{Y}$. Each sample $Y_i$ is a vector with two components: $Y_i \in R^2$, so $d=2$. 
 
@@ -203,11 +203,11 @@ X_proxy = stats.norm(loc=0,scale=2).rvs((n,d_))
 Y = f(X_proxy) # <- this is our target
 ```
 
-# Run the inference algorithm
+## Run the inference algorithm
 
 We can now run the backward inference procedure.
 
-## Step 1: Bound the input space
+### Step 1: Bound the input space
 
 Define bounds of the input space where it is expected the indirect observations to be placed. 
 
@@ -218,7 +218,7 @@ Clues may come from the physics of the problem under study.
 x_lo, x_hi = d_*[-10], d_*[10]
 ```
 
-## Step 2: Cover the input space with evenly spaces samples
+### Step 2: Cover the input space with evenly spaces samples
 
 Ideally these samples are generated using a low-discrepancy sampling scheme. 
 
@@ -237,7 +237,7 @@ uy.shape # prints (100000,3)
 
 
 
-## Step 3: Evaluate the model on the coverage samples
+### Step 3: Evaluate the model on the coverage samples
 
 This step is the most computationally expensive, and should be done offline and in parallel. 
 
@@ -256,7 +256,7 @@ uy.shape # prints (100000,2)
 
 
 
-## Step 4: Compute data depth of $Y$
+### Step 4: Compute data depth of $Y$
 
 In practice, we run the forward data-peeling algorithm for $Y$, subindexing the coverage samples in the output space. 
 
@@ -268,7 +268,7 @@ a,b,c = data_peeling_backward(uy,Y,tol=1e-1)
 # c: a list of masks indicating the coverage samples belonging to each set
 ```
 
-## Step 5: Compute lower probability measure and create structure
+### Step 5: Compute lower probability measure and create structure
 
 We'll use *scenario theory* to compute a lower probability measure for each enclosing set.
 
@@ -287,7 +287,7 @@ fy.shape  # prints: (26,2,2)
 
 
 
-## Step 6: Obtain marginal structures (fuzzy numbers) by projecting the coverage samples
+### Step 6: Obtain marginal structures (fuzzy numbers) by projecting the coverage samples
 
 This steps builds the marginal fuzzy structures of the inderect observations. 
 
@@ -308,7 +308,7 @@ fx.shape # prints: (26,3,2)
 
 
 
-## Plotting
+### Plotting
 
 
 ```python
