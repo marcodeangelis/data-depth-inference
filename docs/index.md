@@ -54,13 +54,10 @@ https://leo.ugr.es/isipta21/pmlr/deangelis21.pdf
 
 
 
-# Getting started
+# Forward inference problem
 
-First, download or clone this repository on your local machine.
+The forward inference problem consists in targeting $p_{X}$, and characterising the inferential uncertainty of the quantity $X$ that is being observed.
 
-`git clone ...`
-
-Then change directory `cd` to the downloaded repository, and open a Python interpreter or Jupyter notebook.
 
 We'll start by importing the code that we need.
 
@@ -71,12 +68,6 @@ from peeling.plots import (plot_peeling,plot_peeling_nxd,plot_peeling_nxd_back,p
 from peeling.fuzzy import (samples_to_fuzzy_projection,boxes_to_fuzzy_projection,coverage_samples)
 from peeling.examples import (pickle_load,pickle_dump,banana_data,banana_model)
 ```
-
-
-
-# Forward inference problem
-
-The forward inference problem consists in targeting $p_{X}$, and characterising the inferential uncertainty of the quantity $X$ that is being observed.
 
 # Generating synthetic data
 
@@ -217,7 +208,7 @@ x_lo, x_hi = d_*[-10], d_*[10]
 
 Ideally these samples are generated using a low-discrepancy sampling scheme. 
 
-We'll use `10 000` samples for this example. 
+We'll use `100 000` samples for this example. 
 
 
 ```python
@@ -226,9 +217,6 @@ uy.shape # prints (100000,3)
 ```
 
 
-
-
-    (10000, 2)
 
 
 
@@ -244,10 +232,6 @@ uy = f(ux)
 uy.shape # prints (100000,2)
 ```
 
-
-
-
-    (100000, 2)
 
 
 
@@ -278,7 +262,6 @@ fy,p = peeling_to_structure(a,b,kind='scenario',beta=0.01)
 fy.shape  # prints: (26,2,2)
 
 ```
-    (26, 2, 2)
 
 
 
@@ -290,13 +273,12 @@ This steps builds the marginal fuzzy structures of the inderect observations.
 
 
 ```python
-fx = samples_to_fuzzy_projection(ux,a,c)
+fx = samples_to_fuzzy_projection(ux,c)
 # fy: a structure containing projections of the original multivariate structure in the input space
 
 fx.shape # prints: (26,3,2)
 ```
 
-    (26, 3, 2)
 
 
 
@@ -326,7 +308,7 @@ plot_peeling_nxd(Y,a,b,p=p,figsize=(9,9),grid=False,label='Y')
 
 
 ```python
-plot_peeling_nxd_back(ux,a,c,p=p,baseline_alpha=0.9,figsize=(12,12))
+plot_peeling_nxd_back(ux,c,p=p,baseline_alpha=0.9,figsize=(12,12))
 ```
 
 

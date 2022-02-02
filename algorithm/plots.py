@@ -5,8 +5,8 @@ import matplotlib as matplotlib
 import matplotlib.pyplot as pyplot
 from matplotlib import gridspec
 
-from peeling.peeling import peeling_to_structure
-from peeling.fuzzy import samples_to_fuzzy_projection
+from algorithm.peeling import peeling_to_structure
+from algorithm.fuzzy import samples_to_fuzzy_projection
 
 FONTSIZE = 22
 
@@ -310,13 +310,13 @@ def plot_fuzzy(fuzzy,p=None,data=None,ax=None,figsize=None,grid=False,
 
 
 
-def plot_peeling_nxd_back(ux,a,c,p:list=None,figsize=None,aspect='auto',
+def plot_peeling_nxd_back(ux,c,p:list=None,figsize=None,aspect='auto',
                             xlabel='X',ylabel=r'$1-\delta$',
                             marker='s',markercolor='grey',boxcolor='blue2',colormap=None,
                             grid=True,baseline_alpha=0.85):
     m,d_ = ux.shape
     l = len(c)
-    fx = samples_to_fuzzy_projection(ux,a,c)
+    fx = samples_to_fuzzy_projection(ux,c)
     if colormap is None: colormap=COLORMAP
     if p is None: p = numpy.arange(1/l,1+1/l,1/l) #p = 1/l
     if xlabel is None: labels = [r'$X_'+str(i+1)+'$' for i in range(d_)]

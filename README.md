@@ -284,7 +284,7 @@ This steps builds the marginal fuzzy structures of the inderect observations.
 
 
 ```python
-fx = samples_to_fuzzy_projection(ux,a,c)
+fx = samples_to_fuzzy_projection(ux,c)
 # fy: a structure containing projections of the original multivariate structure in the input space
 
 fx.shape # prints: (26,3,2)
@@ -318,7 +318,7 @@ plot_peeling_nxd(Y,a,b,p=p,figsize=(9,9),grid=False,label='Y')
 
 
 ```python
-plot_peeling_nxd_back(ux,a,c,p=p,baseline_alpha=0.9,figsize=(12,12))
+plot_peeling_nxd_back(ux,c,p=p,baseline_alpha=0.9,figsize=(12,12))
 ```
 
 

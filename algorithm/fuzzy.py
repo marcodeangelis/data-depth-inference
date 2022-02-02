@@ -14,13 +14,9 @@ def samples_to_fuzzy_projection(ux:numpy.ndarray,c:list):
     ux = numpy.asarray(ux,dtype=float)
     m,d_ = ux.shape
     l = len(c)
-    # if len(a[-1])==1: l=len(a)-1 # last set may not contain enough samples to be deemed a level
-    # else: l=len(a)
-    # c_ = c[:l]
-    # assert(sum([sum(len(subi)) for subi in levels])==m,'something is wrong; check your inputs.')
     fx = numpy.empty((l,d_,2))
     first_empty_level = l
-    for i,subi in enumerate(c_): # levels should be arranged from bottom to top
+    for i,subi in enumerate(c): # levels should be arranged from bottom to top
         if sum(subi)==0: 
             first_empty_level = i # set (non-empty) starting level. Yes, there may be empty levels
             print(f'levels {i}:{l} have no sample coverage. Consider increasing the sample size.')
