@@ -1,11 +1,6 @@
-# Welcome!
-
-This readme will guide you through the use of the code in this repository.
+# Posterior inference with consonant structures via data peeling
 
 The code in this repository is for nonparametric prior-free and likelihood-free posterior inference. 
-
-We named this method: **Inference with consonant structures via data peeling**
-
 
 As the name suggests, this method construct consonant confidence structures directly from data using a procedure name data peeling. 
 
@@ -63,7 +58,7 @@ https://leo.ugr.es/isipta21/pmlr/deangelis21.pdf
 
 First, download or clone this repository on your local machine.
 
-`git clone git@github.com:marcodeangelis/data-depth-inference.git`
+`git clone ...`
 
 Then change directory `cd` to the downloaded repository, and open a Python interpreter or Jupyter notebook.
 
@@ -71,10 +66,10 @@ We'll start by importing the code that we need.
 
 
 ```python
-from algorithm.peeling import (data_peeling_algorithm,data_peeling_backward,peeling_to_structure,uniform)
-from algorithm.plots import (plot_peeling,plot_peeling_nxd,plot_peeling_nxd_back,plot_peeling_nx2,plot_scattermatrix,plot_fuzzy)
-from algorithm.fuzzy import (samples_to_fuzzy_projection,boxes_to_fuzzy_projection,coverage_samples)
-from algorithm.examples import (pickle_load,pickle_dump,banana_data,banana_model)
+from peeling.peeling import (data_peeling_algorithm,data_peeling_backward,peeling_to_structure,uniform)
+from peeling.plots import (plot_peeling,plot_peeling_nxd,plot_peeling_nxd_back,plot_peeling_nx2,plot_scattermatrix,plot_fuzzy)
+from peeling.fuzzy import (samples_to_fuzzy_projection,boxes_to_fuzzy_projection,coverage_samples)
+from peeling.examples import (pickle_load,pickle_dump,banana_data,banana_model)
 ```
 
 
@@ -103,7 +98,7 @@ plot_scattermatrix(X,bins=20,figsize=(10,10))
 
 
     
-![png](docs/figures/output_9_0.png)
+![png](figures/output_9_0.png)
     
 
 
@@ -139,7 +134,7 @@ plot_peeling_nxd(X,a,b,p=p,figsize=(12,12))
 
 
     
-![png](docs/figures/output_15_0.png)
+![png](figures/output_15_0.png)
     
 
 
@@ -301,9 +296,6 @@ fx = samples_to_fuzzy_projection(ux,a,c)
 fx.shape # prints: (26,3,2)
 ```
 
-
-
-
     (26, 3, 2)
 
 
@@ -317,7 +309,7 @@ plot_fuzzy(fx,p=p,grid=True,figsize=(12,7))
 
 
     
-![png](docs/figures/output_37_0.png)
+![png](figures/output_37_0.png)
     
 
 
@@ -328,7 +320,7 @@ plot_peeling_nxd(Y,a,b,p=p,figsize=(9,9),grid=False,label='Y')
 
 
     
-![png](docs/figures/output_38_0.png)
+![png](figures/output_38_0.png)
     
 
 
@@ -339,5 +331,7 @@ plot_peeling_nxd_back(ux,a,c,p=p,baseline_alpha=0.9,figsize=(12,12))
 
 
     
-![png](docs/figures/output_39_0.png)
+![png](figures/output_39_0.png)
     
+
+
